@@ -1,11 +1,10 @@
 const DATABASE_URL_PRODUCTION = process.env.DATABASE_URL;
 const DATABASE_URL_DEV = "mysql://root:root@127.0.0.1:3306/logBookApi";
-console.log(process.env);
 let configEnv = [
   {
     production: {
       url: DATABASE_URL_PRODUCTION,
-      database: "log-book",
+      database: "logbook",
       entities: ["build/entity/*.js"],
       migrations: ["build/migration/*.js"],
       subscribers: ["build/subscriber/**/*.js"]
