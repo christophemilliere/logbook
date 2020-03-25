@@ -1,6 +1,5 @@
 const DATABASE_URL_PRODUCTION = process.env.DATABASE_URL;
 const DATABASE_URL_DEV = "mysql://root:root@127.0.0.1:3306/logBookApi";
-console.log({ DATABASE_URL_PRODUCTION });
 let configEnv = [
   {
     production: {
@@ -20,6 +19,7 @@ let configEnv = [
   }
 ];
 
+console.log({process.env.NODE_ENV})
 const config =
   process.env.NODE_ENV === "production"
     ? configEnv[0]["production"]
