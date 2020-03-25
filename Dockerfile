@@ -3,7 +3,7 @@ ENV NODE_ENV production
 #ENV DEBUG "postgraphile:postgres*"
 WORKDIR /app
 COPY package*.json ./
-COPY package-lock.json ./
+COPY yarn.lock ./
 RUN npm install
 RUN npm install -g typescript
 COPY . .
