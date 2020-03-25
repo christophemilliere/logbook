@@ -18,8 +18,8 @@ let configEnv = [
     }
   }
 ];
-
-console.log({process.env.NODE_ENV})
+const p = process.env.NODE_ENV;
+console.log({ p });
 const config =
   process.env.NODE_ENV === "production"
     ? configEnv[0]["production"]
