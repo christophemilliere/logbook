@@ -27,7 +27,7 @@ const config =
 let base = {
   type: "mysql",
   url: DATABASE_URL_DEV,
-  synchronize: false,
+  synchronize: true,
   logging: true,
   cli: {
     entitiesDir: "src/entity",
