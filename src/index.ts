@@ -33,7 +33,12 @@ createConnection().then(async connection => {
   app.use("/video", checkJwt, VideoRoutes);
   //expressOasGenerator.init(app, {});
   app.use("/static", express.static(__dirname + "/public"));
-  app.get("/", function(req, res) {
+
+  app.get("/faq", function(req, res) {
+    res.sendFile(path.join(__dirname + "/public/faq.html"));
+  });
+
+  app.get("/acceuil", function(req, res) {
     res.sendFile(path.join(__dirname + "/public/index.html"));
   });
 
