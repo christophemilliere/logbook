@@ -3,7 +3,6 @@ import * as bodyParser from "body-parser";
 import { createConnection } from "typeorm";
 import express from "express";
 import cors from "cors";
-import helmet from "helmet";
 import userRoutes from "./user/route";
 import AuthRoutes from "./auth/route";
 import { checkJwt } from "./middlewares/checkJwt";
@@ -21,9 +20,7 @@ createConnection().then(async connection => {
 
   app.use(bodyParser.json());
   app.use(cors());
-  app.use(helmet());
-
-  app.use("/utilisateurs", userRoutes);
+  app.use("/utilisateurs", checkJwt, userRoutes);
   // app.use("/activities", ActivityRoute);
   app.use("/authentification", AuthRoutes);
   // app.use("/recherche", SearchRoutes);
@@ -34,17 +31,17 @@ createConnection().then(async connection => {
   //expressOasGenerator.init(app, {});
   app.use("/static", express.static(__dirname + "/public"));
 
-  app.get("/faq", function(req, res) {
+  app.get("/faq", function (req, res) {
     res.sendFile(path.join(__dirname + "/public/faq.html"));
   });
 
-  app.get("/acceuil", function(req, res) {
+  app.get("/acceuil", function (req, res) {
     res.sendFile(path.join(__dirname + "/public/index.html"));
   });
 
   //app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  app.listen(5000, function() {
+  app.listen(5000, function () {
     console.log("Example app listening on port 5000!");
   });
 });
