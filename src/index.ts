@@ -3,7 +3,7 @@ import * as bodyParser from "body-parser";
 import { createConnection } from "typeorm";
 import express from "express";
 import cors from "cors";
-// import helmet from "helmet";
+import helmet from "helmet";
 import userRoutes from "./user/route";
 import AuthRoutes from "./auth/route";
 import { checkJwt } from "./middlewares/checkJwt";
@@ -21,7 +21,7 @@ createConnection().then(async connection => {
 
   app.use(bodyParser.json());
   app.use(cors());
-  // app.use(helmet());
+  app.use(helmet());
 
   app.use("/utilisateurs", userRoutes);
   // app.use("/activities", ActivityRoute);
