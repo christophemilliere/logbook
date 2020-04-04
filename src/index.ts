@@ -20,7 +20,7 @@ createConnection().then(async connection => {
 
   app.use(bodyParser.json());
   app.use(cors());
-  app.use("/utilisateurs", checkJwt, userRoutes);
+  app.use("/utilisateurs", userRoutes);
   // app.use("/activities", ActivityRoute);
   app.use("/authentification", AuthRoutes);
   // app.use("/recherche", SearchRoutes);
