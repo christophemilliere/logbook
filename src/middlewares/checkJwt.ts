@@ -7,6 +7,8 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   const token = <string>req.headers.authorization.replace("Bearer ", "");
   let jwtPayload;
 
+  console.log("test check");
+
   //Try to validate the token and get data
   try {
     jwtPayload = <any>jwt.verify(token, config.jwtSecret);
@@ -17,6 +19,8 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
     //     "message": "invalid signature"
     // }
 
+    console.log({ error });
+
     const errorMessage = {
       TokenExpiredError: {
         messsage: "Votre sesssion à expirée",
@@ -26,7 +30,8 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
         messsage: "Votre token est invalide",
         status: 401
       }
-    }
+    };
+    console.log("Error :", errorMessage[error.name]);
     res.status(401).send(errorMessage[error.name]);
     return;
   }

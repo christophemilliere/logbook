@@ -5,7 +5,6 @@ import express from "express";
 import cors from "cors";
 import userRoutes from "./user/route";
 import AuthRoutes from "./auth/route";
-import { checkJwt } from "./middlewares/checkJwt";
 import CategoryRoutes from "./category/route";
 import VideoRoutes from "./video/route";
 import path from "path";
@@ -25,9 +24,9 @@ createConnection().then(async connection => {
   app.use("/authentification", AuthRoutes);
   // app.use("/recherche", SearchRoutes);
   // app.use("/email", EmailRoutes);
-  app.use("/categories", checkJwt, CategoryRoutes);
+  app.use("/categories", CategoryRoutes);
   // app.use("/bookmarks", BookmarksRoutes);
-  app.use("/video", checkJwt, VideoRoutes);
+  app.use("/video", VideoRoutes);
   //expressOasGenerator.init(app, {});
   app.use("/static", express.static(__dirname + "/public"));
 
