@@ -16,9 +16,9 @@ class CategoryController {
       relations: ["listWords"],
       where: {
         user: {
-          id: u.userId
-        }
-      }
+          id: u.userId,
+        },
+      },
     });
     console.log({ categories });
     //Send the users object
@@ -32,7 +32,7 @@ class CategoryController {
     const CategoryRepository = getRepository(Category);
     try {
       const category = await CategoryRepository.findOneOrFail(id, {
-        select: ["id"] //We dont want to send the password on response
+        select: ["id"], //We dont want to send the password on response
       });
       res.send(category);
     } catch (error) {
@@ -40,16 +40,31 @@ class CategoryController {
     }
   };
 
+  static allCategory = async (req: Request, res: Response) => {
+    const CategoryRepository = getRepository(Category);
+
+    const u = res.locals.jwtPayload;
+    const listsAll = await CategoryRepository.find({
+      where: {
+        user: {
+          id: u.userId,
+        },
+      },
+    });
+    res.send(listsAll);
+  };
+
   static newCategory = async (req: Request, res: Response) => {
     //Get parameters from the body
     let { name, categoryId, word_one, word_two } = req.body;
     let categoryExsiting;
     const CategoryRepository = getRepository(Category);
+
     if (categoryId) {
       categoryExsiting = await CategoryRepository.findOneOrFail(
         { id: categoryId },
         {
-          select: ["id"] //We dont want to send the password on response
+          select: ["id"], //We dont want to send the password on response
         }
       );
     }
@@ -71,7 +86,7 @@ class CategoryController {
     try {
       console.log("User");
       const u = await userRepository.findOneOrFail(id, {
-        select: ["id"]
+        select: ["id"],
       });
       category.user = u;
     } catch (error) {

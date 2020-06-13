@@ -7,16 +7,16 @@ let configEnv = [
       database: "logbook",
       entities: ["build/entity/*.js"],
       migrations: ["build/migration/*.js"],
-      subscribers: ["build/subscriber/**/*.js"]
+      subscribers: ["build/subscriber/**/*.js"],
     },
     development: {
       url: DATABASE_URL_DEV,
       database: "logBookApi",
       entities: ["src/entity/*.ts"],
       migrations: ["src/migration/*.ts"],
-      subscribers: ["src/subscriber/*.ts"]
-    }
-  }
+      subscribers: ["src/subscriber/*.ts"],
+    },
+  },
 ];
 const p = process.env.NODE_ENV;
 console.log({ p });
@@ -32,10 +32,10 @@ let base = {
   cli: {
     entitiesDir: "src/entity",
     migrationsDir: "src/migration",
-    subscribersDir: "src/subscriber"
-  }
+    subscribersDir: "src/subscriber",
+  },
 };
 module.exports = {
   ...base,
-  ...config
+  ...config,
 };

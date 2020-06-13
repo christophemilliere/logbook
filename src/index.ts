@@ -6,14 +6,15 @@ import cors from "cors";
 import userRoutes from "./user/route";
 import AuthRoutes from "./auth/route";
 import CategoryRoutes from "./category/route";
+import ListFamilyRoutes from "./ListFamily/route";
 import VideoRoutes from "./video/route";
 import path from "path";
 
 console.log({ __dirname });
 
-createConnection().then(async connection => {
+createConnection().then(async (connection) => {
   const options = {
-    explorer: true
+    explorer: true,
   };
   const app = express();
 
@@ -25,6 +26,7 @@ createConnection().then(async connection => {
   // app.use("/recherche", SearchRoutes);
   // app.use("/email", EmailRoutes);
   app.use("/categories", CategoryRoutes);
+  app.use("/lists", ListFamilyRoutes);
   // app.use("/bookmarks", BookmarksRoutes);
   app.use("/video", VideoRoutes);
   //expressOasGenerator.init(app, {});
