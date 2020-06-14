@@ -8,6 +8,6 @@ router.get("/", checkJwt, CategoryController.listAll);
 //Get one user
 router.get("/:id([0-9]+)", checkJwt, CategoryController.getOneById);
 router.post("/", checkJwt, CategoryController.newCategory);
-router.post("/lists", checkJwt, CategoryController.allCategory);
+router.get("/lists", checkJwt, CategoryController.allCategory);
 // router.patch("/:id([0-9]+)", CategoryController.editCategory);
 export default router;
